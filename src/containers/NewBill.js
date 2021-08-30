@@ -18,16 +18,26 @@ export default class NewBill {
   handleChangeFile = e => {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
-    const fileName = filePath[filePath.length-1]
-    this.firestore
-      .storage
-      .ref(`justificatifs/${fileName}`)
-      .put(file)
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
-        this.fileUrl = url
-        this.fileName = fileName
-      })
+    // const fileName = filePath[filePath.length-1]
+    const fileName = file.name
+    const fileExtension = fileName.split('.').pop();
+    if (['PNG', 'JPG', 'JPEG'].includes(fileExtension.toUpperCase())) {
+      if (this.firestore) {
+        this.firestore
+        .storage
+        .ref(`justificatifs/${fileName}`)
+        .put(file)
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+          this.fileUrl = url
+          this.fileName = fileName
+        })
+      }
+      document.getElementById("btn-send-bill").disabled = false;
+    } else {
+      document.getElementById("btn-send-bill").disabled = true;
+      alert ('Veuillez tiliser uniquement des images .jpg, .jpeg, .png')
+    }
   }
   handleSubmit = e => {
     e.preventDefault()
