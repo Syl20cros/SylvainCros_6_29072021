@@ -15,30 +15,26 @@ export default class NewBill {
     this.fileName = null
     new Logout({ document, localStorage, onNavigate })
   }
+
   handleChangeFile = e => {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
     // const fileName = filePath[filePath.length-1]
     const fileName = file.name
     const fileExtension = fileName.split('.').pop();
+    const borderAlert = document.querySelector(`input[data-testid="file"]`);
     if (['PNG', 'JPG', 'JPEG'].includes(fileExtension.toUpperCase())) {
-      if (this.firestore) {
-        this.firestore
-        .storage
-        .ref(`justificatifs/${fileName}`)
-        .put(file)
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => {
-          this.fileUrl = url
-          this.fileName = fileName
-        })
-      }
+      this.setImage(file, fileName);
       document.getElementById("btn-send-bill").disabled = false;
+      borderAlert.classList.remove("re-border");
     } else {
       document.getElementById("btn-send-bill").disabled = true;
       alert ('Veuillez tiliser uniquement des images .jpg, .jpeg, .png')
+      borderAlert.classList.add("red-border");
     }
   }
+  
+
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
@@ -71,5 +67,17 @@ export default class NewBill {
       })
       .catch(error => error)
     }
+  }
+
+  setImage(file, fileName) {
+      this.firestore
+      .storage
+      .ref(`justificatifs/${fileName}`)
+      .put(file)
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then(url => {
+        this.fileUrl = url
+        this.fileName = fileName
+      })
   }
 }
