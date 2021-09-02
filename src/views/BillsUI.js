@@ -1,15 +1,15 @@
 import VerticalLayout from './VerticalLayout.js'
 import ErrorPage from "./ErrorPage.js"
 import LoadingPage from "./LoadingPage.js"
-
 import Actions from './Actions.js'
+import { formatDate } from '../app/format.js'
 
 const row = (bill) => {
   return (`
     <tr>
       <td>${bill.type}</td>
       <td>${bill.name}</td>
-      <td>${bill.date}</td>
+      <td>${formatDate(bill.date)}</td>
       <td>${bill.amount} €</td>
       <td>${bill.status}</td>
       <td>
@@ -22,11 +22,12 @@ const row = (bill) => {
 const rows = (data) => {
   // return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
   if (data && data.length) {
-    const antiChrono = (a, b) => (Date.parse(a.date) < Date.parse(b.date) ? 1 : -1)
-    data.sort(antiChrono) 
-    return data.map(bill => row(bill)).join("")
+    data.sort(function(a,b) {  //fonction de tri
+      return (new Date(b.date)).getTime() - (new Date(a.date)).getTime();
+    });
+    return data.map(bill => row(bill)).join(""); //Retour de la date triée
   } else {
-    return ''
+    return '' //sinon valeur null
   }
 }
 
