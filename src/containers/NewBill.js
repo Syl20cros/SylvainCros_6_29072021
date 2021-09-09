@@ -70,6 +70,7 @@ export default class NewBill {
   }
 
   setImage(file, fileName) {
+    if(this.firestore){
       this.firestore
       .storage
       .ref(`justificatifs/${fileName}`)
@@ -79,5 +80,6 @@ export default class NewBill {
         this.fileUrl = url
         this.fileName = fileName
       })
+    }
   }
 }
