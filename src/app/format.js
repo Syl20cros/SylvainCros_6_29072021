@@ -1,6 +1,8 @@
 export const formatDate = (dateStr) => {
   if (!dateStr) {
+
     return ""
+
   }
   const date = new Date(dateStr)
   const ye = new Intl.DateTimeFormat('fr', { year: 'numeric' }).format(date)
