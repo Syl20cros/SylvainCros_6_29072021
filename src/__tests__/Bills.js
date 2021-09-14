@@ -8,7 +8,7 @@ import userEvent from "@testing-library/user-event"
 import firebase from "../__mocks__/firebase.js"
 import { localStorageMock } from "../__mocks__/localStorage.js"
 
-/////////////// views/Bills //////////////// code coverage 100%
+/////////////// views/Bills ////////////////
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
@@ -50,8 +50,7 @@ describe("Given an employee enter his email and his password", () => {
 })
 
 
-/////////////// containers/Bills //////////////// code coverage 80%
-
+/////////////// containers/Bills ////////////////
 
 describe("Given I am connected as an employee", () => {
   //handleClickNewBill
