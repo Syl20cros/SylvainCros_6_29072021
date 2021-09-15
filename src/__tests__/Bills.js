@@ -7,6 +7,7 @@ import { ROUTES } from "../constants/routes.js"
 import userEvent from "@testing-library/user-event"
 import firebase from "../__mocks__/firebase.js"
 import { localStorageMock } from "../__mocks__/localStorage.js"
+import {formatDate} from "../app/format.js"
 
 /////////////// views/Bills ////////////////
 
@@ -154,3 +155,4 @@ describe("Given I am a user connected as Employee", () => {
     })
   })
 })
+

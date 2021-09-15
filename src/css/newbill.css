@@ -22,9 +22,6 @@
   border-radius: 5px;
 }
 
-.red-border {
-  border: 2px solid red !important;
-}
 
 label {
   font-style: normal;
@@ -64,8 +61,4 @@ textarea:focus, input:focus, select:focus {
 
 *[placeholder] {
   color: #0E5AE5 !important;
-}
-
-.redBorder {
-  border: 2px solid red !important;
 }

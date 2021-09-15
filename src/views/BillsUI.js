@@ -20,7 +20,6 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
-  // return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
   if (data && data.length) {
     data.sort(function(a,b) {  //fonction de tri
       return (new Date(b.date)).getTime() - (new Date(a.date)).getTime();

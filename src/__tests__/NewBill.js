@@ -8,7 +8,7 @@ import firebase from "../__mocks__/firebase"
 /////////////// TU container/newBill ////////////////
 
 describe("Given I am connected as an employee", () => {
-  describe("When I fill input with good extension file", () => {
+  describe("When I am on New Bills Page", () => {
     test("Then new bill icon in vertical layout should be highlighted", () => {
       Object.defineProperty(window, "localStorage", { value: localStorageMock })
       window.localStorage.setItem("user", JSON.stringify({
@@ -19,7 +19,10 @@ describe("Given I am connected as an employee", () => {
       const iconActive = screen.getByTestId("icon-mail")
       expect(iconActive.classList.contains("active-icon")).toBeTruthy
     })
+  })
 
+  //handleChangeFile
+  describe("When I fill input with good extension file", () => {
     test("Then the file should be upload", () => {
       document.body.innerHTML = NewBillUI();
 
@@ -49,7 +52,7 @@ describe("Given I am connected as an employee", () => {
     })
   })
 
-
+  // handleChangeFile
   describe("When I fill input with wrong extension file", () => {
     test("Then the file should not be upload", () => {
       document.body.innerHTML = NewBillUI();
@@ -80,7 +83,7 @@ describe("Given I am connected as an employee", () => {
     })
   })
 
-
+  // handleSubmit
   describe("When I click on submit button", () => {
     test("Then the function handleSubmit should be called", () => {
       document.body.innerHTML = NewBillUI();
@@ -171,4 +174,3 @@ describe("Given I am a user connected as Employee", () => {
     })
   })
 })
-

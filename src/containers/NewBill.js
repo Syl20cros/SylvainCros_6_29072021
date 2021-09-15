@@ -26,11 +26,9 @@ export default class NewBill {
     if (['PNG', 'JPG', 'JPEG'].includes(fileExtension.toUpperCase())) {
       this.setImage(file, fileName);
       document.getElementById("btn-send-bill").disabled = false;
-      borderAlert.classList.remove("re-border");
     } else {
       document.getElementById("btn-send-bill").disabled = true;
       alert ('Veuillez tiliser uniquement des images .jpg, .jpeg, .png')
-      borderAlert.classList.add("red-border");
     }
   }
   
